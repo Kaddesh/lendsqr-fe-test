@@ -1,0 +1,130 @@
+.dashboard-nav {
+  background: #ffffff; /* white background for nav */
+  box-shadow: 0 6px 18px rgba(33,63,125,0.08); /* subtle shadow */
+  width: 100%;
+  height: 100px; /* nav height */
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+
+  &__inner {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 24px;
+    box-sizing: border-box;
+  }
+
+  &__left {
+    display: flex;
+    align-items: center;
+    gap: 168px; /* gap between logo and search */
+  }
+
+  /* logo size */
+  &__logo img {
+    width: 144.8px;
+    height: 30px;
+    display: block;
+    object-fit: contain;
+  }
+
+  /* Search input overrides (TextInput props used) */
+  .dashboard-nav__search-wrapper {
+    max-width: 400px; /* changed to 400px */
+    position: relative;
+  }
+  .dashboard-nav__search-input {
+    width: 100%;
+    height: 40px; /* 40 height */
+    max-width: 400px;
+    border-radius: 100px; /* pill */
+    border: 2px solid #545F7D;
+    padding: 0 72px 0 12px; /* right padding to make room for action (56px + gap) */
+    font-size: 14px;
+    box-sizing: border-box;
+  }
+
+  /* action rectangle at the extreme end inside the search bar */
+  .dashboard-nav__search-action {
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 56px; /* w-56 */
+    height: 40px; /* h-40 */
+    background: #39CDCC;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0 100px 100px 0; /* rounded on the right side to match pill */
+    cursor: pointer;
+    border: none;
+  }
+  .dashboard-nav__search-action img {
+    width: 13.9px; /* icon width */
+    height: 14px;   /* icon height */
+    display: block;
+    object-fit: contain;
+    filter: none;
+    /* icon should be white — ensure the svg is white or use invert if needed */
+  }
+
+  &__right {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  &__docs {
+    margin: 0;
+    font-size: 16px; /* docs font size */
+    color: #213F7D; /* docs color */
+    font-weight: 500;
+  }
+
+  &__icon {
+    width: 20px;
+    height: 20px;
+    object-fit: contain;
+    filter: none;
+  }
+
+  &__profile {
+    display: flex;
+    align-items: center;
+    gap: 8px; /* gap-2 ~ 8px between avatar, name and dropdown */
+  }
+
+  &__avatar {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    overflow: hidden;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+  &__avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  &__username {
+    margin: 0;
+    font-size: 16px;
+    color: #213F7D; /* medium text color */
+    font-weight: 500;
+  }
+
+  &__dropdown {
+    width: 16px;
+    height: 16px;
+    object-fit: contain;
+  }
+}

@@ -1,0 +1,38 @@
+.user-action-modal {
+    background: #ffffff;
+    width: 180px;
+    padding: 20px 20px 22px 20px;
+    border-radius: 4px;
+    max-width: 180px;
+    width: 100%;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  .action-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  
+    background: transparent;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+  
+    font-size: 14px;
+    font-weight: 600;
+    color: #545f7d;
+  
+    svg {
+      font-size: 16px;
+      font-weight: 600;
+    }
+  
+    &:hover {
+      color: #213f7d;
+    }
+  }
+  

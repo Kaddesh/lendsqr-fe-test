@@ -1,0 +1,21 @@
+@import '../styles/mixins.scss';
+
+.main-layout {
+  display: flex;
+  width: 100%;
+  min-height: 100vh;
+  margin-left: 283px;
+
+  .main-content {
+    flex: 1;
+    width: 100%;
+    padding-left: 60px;
+    background: #f5f5f5;
+    overflow-x: hidden;
+    overflow-y: auto;
+
+    @include breakpoint-down(medium) {
+      margin-left: 0;
+    }
+  }
+}

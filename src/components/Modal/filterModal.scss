@@ -1,0 +1,96 @@
+.filter-modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+  }
+  
+  .filter-modal {
+    background: #fff;
+    width: 270px;
+    padding: 30px 20px 28px;
+    border-radius: 8px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+  
+    &__title {
+      font-size: 16px;
+      font-weight: 600;
+      margin-bottom: 20px;
+      color: #213f7d;
+    }
+  
+    &__actions {
+      display: flex;
+      gap: 14px;
+      margin-top: 24px;
+  
+      .btn {
+        border-radius: 8px;
+        height: 40px;
+        width: 98px;
+        font-size: 14px;
+        cursor: pointer;
+      }
+  
+      .btn--outline {
+        background: transparent;
+        border: 1px solid #545F7D;
+        color: #545f7d;
+      }
+  
+      .btn--primary {
+        background: #39cdcc;
+        border: none;
+        color: #fff;
+      }
+    }
+  }
+  
+  /* Form styles */
+  .form-group {
+    margin-bottom: 20px;
+    position: relative;
+  }
+  
+  .form-label {
+    display: block;
+    font-size: 14px;
+    margin-bottom: 6px;
+    color: #545f7d;
+  }
+  
+  .form-input {
+    max-width: 230px;
+    width: 100%;
+    padding: 12px 20px;
+    border: 1px solid #dcdcdc;
+    border-radius: 4px;
+    font-size: 14px;
+    outline: none;
+
+    &placeholder {
+        color: #545F7D;
+        font-size: 14px;
+    }
+  
+    &:focus {
+      border-color: #39cdcc;
+      font-size: 14px;
+    }
+
+  }
+  
+  .input-icon {
+    position: absolute;
+    right: 12px;
+    top: 38px;
+    color: #545f7d;
+  
+    &.clickable {
+      cursor: pointer;
+    }
+  }
+  
