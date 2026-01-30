@@ -34,23 +34,19 @@ export const fetchUserProfileById = async (
   });
 };
 
-export const loginUser = async (email: string, password: string): Promise<{ success: boolean; user?: { email: string; name: string }; error?: string }> => {
+export const loginUser = async (
+  email: string,
+  password: string
+): Promise<{ success: boolean; user?: User; error?: string }> => {
   return new Promise((resolve) => {
     setTimeout(() => {
-      // Mock validation
-      if (email && password && password.length > 0) {
-        resolve({
-          success: true,
-          user: {
-            email,
-            name: email.split('@')[0],
-          },
-        });
+      const user = MOCK_DB.users.find(
+        (u) => u.email.toLowerCase() === email.toLowerCase()
+      );
+      if (user && password.length > 0) {
+        resolve({ success: true, user });
       } else {
-        resolve({
-          success: false,
-          error: 'Invalid credentials',
-        });
+        resolve({ success: false, error: 'Invalid credentials' });
       }
     }, 400);
   });

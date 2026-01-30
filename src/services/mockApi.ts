@@ -8,7 +8,7 @@ const statuses: UserStatus[] = ['active', 'inactive', 'pending', 'blacklisted'];
 
 const monthNames = ['January','February','March','April','May','June','July','August','September','October','November','December'];
 
-type MockDB = {
+type MockDB = {   
   users: User[];
   profiles: UserProfile[];
 };
@@ -18,9 +18,20 @@ const generateMockDB = (count: number): MockDB => {
   const profiles: UserProfile[] = [];
 
   for (let i = 1; i <= count; i++) {
-    const firstName = firstNames[Math.floor(Math.random() * firstNames.length)];
-    const lastName = lastNames[Math.floor(Math.random() * lastNames.length)];
-    const company = companies[Math.floor(Math.random() * companies.length)];
+const isFirstUser = i === 1;
+
+const firstName = isFirstUser
+  ? 'Adedeji'
+  : firstNames[Math.floor(Math.random() * firstNames.length)];
+
+const lastName = isFirstUser
+  ? 'Ogana'
+  : lastNames[Math.floor(Math.random() * lastNames.length)];
+
+const company = isFirstUser
+  ? 'Lendsqr'
+  : companies[Math.floor(Math.random() * companies.length)];
+
 
     const id = `USR-${String(i).padStart(6, '0')}`;
 
@@ -46,7 +57,7 @@ const generateMockDB = (count: number): MockDB => {
       joinDate,
       avatar: `https://i.pravatar.cc/150?img=${i % 70}`,
     });
-
+     
     profiles.push({
       userId: id,
       userCode: `LSQF-${Math.random().toString(36).slice(2, 10).toUpperCase()}`,

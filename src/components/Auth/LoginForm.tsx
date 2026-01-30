@@ -3,6 +3,10 @@ import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 import TextInput from '../Form/TextInput';
+import { useDispatch, useSelector } from 'react-redux';
+import { loginAsync, clearError } from '../../redux/slices/authSlice';
+import { AppDispatch, RootState } from '../../redux/store';
+import { useNavigate } from 'react-router-dom';
 
 const loginSchema = z.object({
   email: z.string().email({ message: 'Invalid email address' }),
@@ -16,23 +20,33 @@ type Props = {
   className?: string; // top-level form wrapper
 };
 
-export const LoginForm: React.FC<Props> = ({ onSubmit, className }) => {
+export const LoginForm: React.FC<Props> = ({ className }) => {
   const [showPassword, setShowPassword] = useState(false);
-  const {
-    register,
-    handleSubmit,
-    formState: { errors, isSubmitting },
-  } = useForm<LoginData>({
+  const dispatch = useDispatch<AppDispatch>();
+  const navigate = useNavigate();
+  const { loading, error } = useSelector((state: RootState) => state.auth);
+
+  const { register, handleSubmit, formState: { errors } } = useForm<LoginData>({
     resolver: zodResolver(loginSchema),
   });
 
-  const submit = (data: LoginData) => {
-    if (onSubmit) onSubmit(data);
-    else console.log('Login submit:', data);
+  const submit = async (data: LoginData) => {
+    try {
+      await dispatch(loginAsync(data)).unwrap();
+      navigate('/'); 
+    } catch (err) {
+      console.log('Login failed:', err);
+    }
   };
+
 
   return (
     <form onSubmit={handleSubmit(submit)} noValidate className={className ?? 'login-form'}>
+        {error && (
+  <p className="login-form__error" onClick={() => dispatch(clearError())}>
+    {error}
+  </p>
+)}
       <div className="login-form__field">
         <TextInput
           name="email"
@@ -72,7 +86,7 @@ export const LoginForm: React.FC<Props> = ({ onSubmit, className }) => {
       </div>
 
       <div className="login-form__actions">
-        <button type="submit" disabled={isSubmitting} className="login-form__submit">
+        <button type="submit" disabled={loading} className="login-form__submit">
           Log in
         </button>
       </div>
