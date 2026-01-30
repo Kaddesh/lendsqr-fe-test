@@ -4,11 +4,13 @@ import SidebarItem from './SidebarItem';
 import SidebarSection from './SidebarSection';
 import { SidebarConfig } from '../../types/sidebar';
 import './Sidebar.scss';
+import { FiX } from 'react-icons/fi';
 
 interface SidebarProps {
   config: SidebarConfig;
   isOpen?: boolean;
   onClose?: () => void;
+  
 }
 
 export const Sidebar = ({ config, isOpen = true, onClose }: SidebarProps) => {
@@ -84,7 +86,7 @@ export const Sidebar = ({ config, isOpen = true, onClose }: SidebarProps) => {
       {/* Close button for mobile */}
       {onClose && (
         <button className="sidebar-close-btn" onClick={onClose}>
-          ✕
+          <FiX size={30} />
         </button>
       )}
     </aside>

@@ -1,16 +1,22 @@
+@import '../../styles/mixins.scss';
+
 .table-wrapper {
     width: 100%;
     overflow-x: auto; // 🔥 horizontal scroll when needed
     background: #ffffff;
     border-radius: 4px;
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-    padding: 30px;
+    padding: 10px;
+
+     @include breakpoint-up(medium) {
+      padding: 30px;
+   }
   }
 
   .users-table {
     width: 100%;
     border-collapse: collapse;
-    min-width: 1100px; 
+    
   
     thead {
       background: #ffffff;
@@ -33,6 +39,7 @@
         tr {
           border-bottom: 1px solid #e5e5e5;
           transition: background-color 0.2s;
+          gap: 20px;
     
           &:hover {
             background-color: #f9f9f9;
@@ -47,6 +54,7 @@
             padding-block: 23px;
             color: #545F7D;
             font-size: 14px;
+            font-weight: 400;
             white-space: nowrap;
             text-overflow: ellipsis;
             overflow: hidden;

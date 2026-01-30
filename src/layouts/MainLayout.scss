@@ -2,20 +2,69 @@
 
 .main-layout {
   display: flex;
-  width: 100%;
   min-height: 100vh;
-  margin-left: 283px;
+  padding-top: 100px;
 
-  .main-content {
-    flex: 1;
-    width: 100%;
-    padding-left: 60px;
-    background: #f5f5f5;
-    overflow-x: hidden;
-    overflow-y: auto;
-
-    @include breakpoint-down(medium) {
-      margin-left: 0;
-    }
+  @include breakpoint-up(large) {
+    margin-left: 283px;
   }
 }
+
+.main-content {
+  width: 100%;
+  background: #f5f5f5;
+  padding: 12px;
+  overflow-y: auto;
+
+  @include breakpoint-up(medium) {
+    padding: 0 40px;
+  }
+
+  @include breakpoint-up(large) {
+    padding: 0 60px;
+  }
+}
+
+  .dashboard-nav__search-wrapper {
+    width: 300px; 
+    position: relative;
+    z-index: 10;
+  }
+
+  .mobile-only {
+  @include breakpoint-up(large) {
+    display: none;
+  }
+}
+  .dashboard-nav__search-input {
+    height: 40px; 
+    width: 300px;
+    border-radius: 100px; 
+    border: 2px solid #545F7D;
+    padding: 0 72px 0 12px; 
+    font-size: 14px;
+    box-sizing: border-box;
+  }
+
+  .dashboard-nav__search-action {
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 56px; 
+    height: 40px; 
+    background: #39CDCC;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0 100px 100px 0; 
+    cursor: pointer;
+    border: none;
+  }
+  .dashboard-nav__search-action img {
+    width: 13.9px; 
+    height: 14px;   
+    display: block;
+    object-fit: contain;
+    filter: none;
+  }

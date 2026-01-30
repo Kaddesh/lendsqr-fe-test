@@ -1,11 +1,26 @@
+@import '../../styles/mixins.scss';
+
 .user-card {
   background: #fff;
   padding: 30px;
   max-width: 100%;
+  
 
-  .row {
+  .card-row {
     display: flex;
-    align-items: center;
+    flex-direction: column;
+    gap: 30px;
+
+     @include breakpoint-up(large) {
+      flex-direction: row;
+      flex-wrap: wrap;
+      align-items: center;
+  }
+
+   &__user {
+     display: flex;
+     align-items: center;
+   }
   }
 
   .avatar {
@@ -22,28 +37,42 @@
 
   .name-block {
     margin-left: 20px;
-
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
     h3 {
       font-size: 22px;
       font-weight: 500;
     }
 
     p {
-      margin-top: 8px;
+      font-size: 14px;
       color: #545F7D;
     }
   }
 
   .divider {
-    height: 80px;
+     display: none;
+
+     @include breakpoint-up(large) {
+      display: block;
+       height: 80px;
     width: 1px;
     background: #ddd;
     margin: 0 30px;
   }
 
+  }
+
   .rating {
-    color: #545F7D;
-    font-size: 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    span {
+      color: #545F7D;
+      font-size: 14px;
+      font-weight: 500;
+    }
   }
 
   .bank {

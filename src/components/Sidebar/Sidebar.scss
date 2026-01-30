@@ -1,3 +1,5 @@
+@import '../../styles/mixins.scss';
+
 .sidebar {
   width: 283px;
   max-width: 283px;
@@ -5,20 +7,44 @@
   position: fixed;
   top: 100px;
   left: 0;
-
-  height: calc(100vh - 100px); /* 🔑 THIS */
+  height: calc(100vh - 100px); 
   overflow-y: auto;
-
   padding-top: 19px;
   padding-left: 30px;
   display: flex;
   flex-direction: column;
+  transform: translateX(0);
+  transition: transform 0.3s ease-in-out;
+  z-index: 1000;
+}
+
+.sidebar.closed {
+  transform: translateX(-100%);
+
+  @include breakpoint-up(large) {
+   transform: none;
+   padding-bottom: 0;
+  }
+}
+
+/* OPEN STATE */
+.sidebar.open {
+  transform: translateX(0);
+
+  @include breakpoint-up(large) {
+   transform: none;
+  }
 }
 
 /* CONTENT WRAPPER */
 .sidebar-content {
   display: flex;
   flex-direction: column;
+  margin-top: 40px;
+
+   @include breakpoint-up(large) {
+   margin-top: 0;
+  }
 }
 
 /* ================= TOP SECTION ================= */
@@ -125,3 +151,26 @@
   border-radius: 8px;
   opacity: 1;
 }
+
+.sidebar-close-btn {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  font-weight: bold;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: #545f7d;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  @include breakpoint-up(large) {
+      display: none;
+   }
+
+  &:hover {
+    color: #213f7d;
+  }
+}
+

@@ -1,0 +1,79 @@
+@import '../../styles/mixins.scss';
+
+.detailpage-container {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  padding-top: 60px;
+}
+
+.detailpage-content {
+  display: flex;
+  flex-direction: column;
+  gap: 26px;
+}
+
+/* Back row */
+.back-row {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  cursor: pointer;
+  color: #545f7d;
+  font-size: 16px;
+  font-weight: 400;
+
+  &__arrow {
+    height: 10px;
+    width: 27px;
+  }
+}
+
+/* Header */
+.details-header {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  
+
+   @include breakpoint-up(large) {
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+   }
+
+  h2 {
+    font-size: 24px;
+    font-weight: 500;
+    color: #213f7d;
+  }
+}
+
+/* Actions */
+.actions {
+  display: flex;
+  gap: 20px;
+}
+
+.btn {
+  padding: 12px 24px;
+  font-size: 14px;
+  font-weight: 600;
+  text-transform: uppercase;
+  background: transparent;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+/* Button variants */
+.btn.blacklist {
+  color: #e4033b;
+  font-weight: 800;
+  border: 1px solid #e4033b;
+}
+
+.btn.activate {
+  color: #39cdcc;
+  font-weight: 800;
+  border: 1px solid #39cdcc;
+}

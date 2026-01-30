@@ -10,7 +10,8 @@ interface UserCardProps {
 const UserCard: React.FC<UserCardProps> = ({ user, profile }) => {
   return (
     <div className="user-card">
-      <div className="row">
+      <div className="card-row">
+        <div className='card-row__user'>
         <div className="avatar">
           <img src={user.avatar} alt={user.firstName} />
         </div>
@@ -18,6 +19,7 @@ const UserCard: React.FC<UserCardProps> = ({ user, profile }) => {
         <div className="name-block">
           <h3>{profile.personalInfo.fullName}</h3>
           <p>{profile.userCode}</p>
+        </div>
         </div>
 
         <div className="divider" />

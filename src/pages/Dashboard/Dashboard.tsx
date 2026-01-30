@@ -1,15 +1,14 @@
-import React, { useEffect, useState } from 'react'
-import './Dashboard.scss';
-import DashboardNav from './dashboardNav';
-import DashboardCard from '../../components/card/dashboardCard';
-import usersIcon from '../../assets/icons/user.svg'
-import activeUserIcon from '../../assets/icons/active-user.svg'
-import usersWithLoanIcon from '../../assets/icons/userW-loan.svg'
-import usersWithSavingsIcon from '../../assets/icons/usersW-savings.svg'
-import Table from '../../components/Table/table';
-import Pagination from '../../components/Pagination/Pagination';
-import { fetchUsers } from '../../services/api';
-import { User } from '../../types';
+import React, { useEffect, useState } from "react";
+import "./Dashboard.scss";
+import DashboardCard from "../../components/card/dashboardCard";
+import usersIcon from "../../assets/icons/user.svg";
+import activeUserIcon from "../../assets/icons/active-user.svg";
+import usersWithLoanIcon from "../../assets/icons/userW-loan.svg";
+import usersWithSavingsIcon from "../../assets/icons/usersW-savings.svg";
+import Table from "../../components/Table/table";
+import Pagination from "../../components/Pagination/Pagination";
+import { fetchUsers } from "../../services/api";
+import { User } from "../../types";
 
 export const DashboardPage = () => {
   const [users, setUsers] = useState<User[]>([]);
@@ -26,7 +25,7 @@ export const DashboardPage = () => {
         setUsers(result.data);
         setTotalItems(result.total);
       } catch (error) {
-        console.error('Error loading users:', error);
+        console.error("Error loading users:", error);
       } finally {
         setLoading(false);
       }
@@ -36,13 +35,14 @@ export const DashboardPage = () => {
   }, [currentPage, itemsPerPage]);
 
   const handleUserClick = (userId: string) => {
-    console.log('View user details:', userId);
+    console.log("View user details:", userId);
     // Navigate to user details page if needed
   };
 
   return (
     <div className="dashboard-container">
       <div className="dashboard-content">
+        
         <h1>Users</h1>
         <div className="dashboard-cards">
           <DashboardCard
