@@ -1,7 +1,7 @@
 import React from 'react'
 import loginImg from '../../assets/images/loginimg.png'
 import lendLogo from '../../assets/icons/lend-Logo.svg'
-import '../../styles/Login.scss'
+import './Login.scss';
 import LoginForm from '../../components/Auth/LoginForm'
 
 export const LoginPage = () => {
@@ -16,7 +16,11 @@ export const LoginPage = () => {
         </div>
 
         <div className="login-page__content">
-          <div className="login-page__header">
+          
+          <div className="login-page__header">.
+            <div className='login-page__logo-mobile'>
+            <img src={lendLogo} alt="lend-logo-mobile" />
+        </div>
             <h1 className="login-page__title">Welcome!</h1>
             <p className="login-page__subtitle">Enter details to log in</p>
           </div>
