@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import "./Dashboard.scss";
 import DashboardCard from "../../components/card/dashboardCard";
 import usersIcon from "../../assets/icons/user.svg";
@@ -7,42 +7,42 @@ import usersWithLoanIcon from "../../assets/icons/userW-loan.svg";
 import usersWithSavingsIcon from "../../assets/icons/usersW-savings.svg";
 import Table from "../../components/Table/table";
 import Pagination from "../../components/Pagination/Pagination";
-import { fetchUsers } from "../../services/api";
-import { User } from "../../types";
+import { useDispatch, useSelector } from "react-redux";
+import { AppDispatch, RootState } from "../../redux/store";
+import {
+  fetchUsersAsync,
+  setCurrentPage,
+  setPageSize,
+} from "../../redux/slices/usersSlice";
 
 export const DashboardPage = () => {
-  const [users, setUsers] = useState<User[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [currentPage, setCurrentPage] = useState(1);
-  const [itemsPerPage, setItemsPerPage] = useState(5);
-  const [totalItems, setTotalItems] = useState(0);
+  const dispatch = useDispatch<AppDispatch>();
+
+  const {
+    data: users,
+    loading,
+    currentPage,
+    pageSize,
+    total,
+  } = useSelector((state: RootState) => state.users);
+
+  const { filters, searchTerm } = useSelector((state: RootState) => state.users);
 
   useEffect(() => {
-    const loadUsers = async () => {
-      setLoading(true);
-      try {
-        const result = await fetchUsers(currentPage, itemsPerPage);
-        setUsers(result.data);
-        setTotalItems(result.total);
-      } catch (error) {
-        console.error("Error loading users:", error);
-      } finally {
-        setLoading(false);
-      }
-    };
+    dispatch(
+      fetchUsersAsync({
+        page: currentPage,
+        pageSize,
+        filters,
+        searchTerm
+      }),
+    );
+  }, [dispatch, currentPage, pageSize, filters, searchTerm]);
 
-    loadUsers();
-  }, [currentPage, itemsPerPage]);
-
-  const handleUserClick = (userId: string) => {
-    console.log("View user details:", userId);
-    // Navigate to user details page if needed
-  };
 
   return (
     <div className="dashboard-container">
       <div className="dashboard-content">
-        
         <h1>Users</h1>
         <div className="dashboard-cards">
           <DashboardCard
@@ -74,14 +74,17 @@ export const DashboardPage = () => {
           <div className="loading">Loading users...</div>
         ) : (
           <>
-            <Table users={users} onUserClick={handleUserClick} />
+            <Table
+              users={users}
+              
+            />
             <Pagination
               currentPage={currentPage}
-              totalItems={totalItems}
-              itemsPerPage={itemsPerPage}
-              onPageChange={setCurrentPage}
-              onItemsPerPageChange={setItemsPerPage}
-            />
+              totalItems={total}
+              itemsPerPage={pageSize}
+              onPageChange={(page) => dispatch(setCurrentPage(page))}
+              onItemsPerPageChange={(size) => dispatch(setPageSize(size))}
+            />{" "}
           </>
         )}
       </div>
