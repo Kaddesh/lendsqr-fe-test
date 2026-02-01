@@ -1,9 +1,17 @@
+@import '../../styles/mixins.scss';
+
 .pagination-container {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  flex-direction: column;
   padding: 20px 0;
   margin-top: 20px;
+  gap: 10px;
+
+   @include breakpoint-up(large) {
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+   }
 }
 
 .pagination-left {
