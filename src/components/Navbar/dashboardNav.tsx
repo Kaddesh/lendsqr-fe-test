@@ -6,6 +6,9 @@ import dropdownIcon from '../../assets/icons/dropdown.svg';
 import searchIcon from '../../assets/icons/search.svg';
 import profileImg from '../../assets/images/profileimg.png';
 import './dashboardNav.scss';
+import { AppDispatch, RootState } from '../../redux/store';
+import { useDispatch, useSelector } from 'react-redux';
+import { setSearchTerm } from '../../redux/slices/usersSlice';
 
 type Props = {
   onMenuToggle: () => void;
@@ -13,6 +16,9 @@ type Props = {
 
 const DashboardNav: React.FC<Props> = ({ onMenuToggle }) => {
   const [showMobileMenu, setShowMobileMenu] = useState(false);
+
+  const dispatch = useDispatch<AppDispatch>();
+  const searchTerm = useSelector((state: RootState) => state.users.searchTerm);
 
   return (
     <nav className="dashboard-nav">
@@ -33,6 +39,8 @@ const DashboardNav: React.FC<Props> = ({ onMenuToggle }) => {
               type="search"
               placeholder="Search for anything"
               inputClassName="dashboard-nav__search-input"
+              value={searchTerm}
+              onChange={(e) => dispatch(setSearchTerm(e.target.value))}
             />
             <div className="dashboard-nav__search-action">
               <img src={searchIcon} alt="search" />
@@ -43,14 +51,22 @@ const DashboardNav: React.FC<Props> = ({ onMenuToggle }) => {
         {/* RIGHT DESKTOP */}
         <div className="dashboard-nav__right desktop-only">
           <h3 className="dashboard-nav__docs">Docs</h3>
-          <img src={notificationIcon} alt="notification" className="dashboard-nav__icon" />
+          <img
+            src={notificationIcon}
+            alt="notification"
+            className="dashboard-nav__icon"
+          />
 
           <div className="dashboard-nav__profile">
             <div className="dashboard-nav__avatar">
               <img src={profileImg} alt="profile" />
             </div>
             <p className="dashboard-nav__username">Ayodeji</p>
-            <img src={dropdownIcon} alt="dropdown" className="dashboard-nav__dropdown" />
+            <img
+              src={dropdownIcon}
+              alt="dropdown"
+              className="dashboard-nav__dropdown"
+            />
           </div>
         </div>
 
@@ -62,12 +78,11 @@ const DashboardNav: React.FC<Props> = ({ onMenuToggle }) => {
 
           <button
             className="dashboard-nav__mobile-dots"
-            onClick={() => setShowMobileMenu(prev => !prev)}
+            onClick={() => setShowMobileMenu((prev) => !prev)}
           >
             ⋮
           </button>
 
-          {/* MOBILE DROPDOWN */}
           {showMobileMenu && (
             <div className="dashboard-nav__mobile-dropdown">
               <p>Docs</p>
