@@ -21,7 +21,7 @@ const generateMockDB = (count: number): MockDB => {
 const isFirstUser = i === 1;
 
 const firstName = isFirstUser
-  ? 'Adedeji'
+  ? 'Adedeji' 
   : firstNames[Math.floor(Math.random() * firstNames.length)];
 
 const lastName = isFirstUser

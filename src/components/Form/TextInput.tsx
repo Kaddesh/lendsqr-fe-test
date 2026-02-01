@@ -6,10 +6,12 @@ type Props = {
   name: string;
   type?: React.HTMLInputTypeAttribute;
   register?: UseFormRegisterReturn;
+  value?: string;
+  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
   error?: string | null;
   placeholder?: string;
   right?: React.ReactNode;
-  className?: string; // wrapper
+  className?: string;
   inputClassName?: string;
   labelClassName?: string;
   errorClassName?: string;
@@ -21,6 +23,8 @@ const TextInput: React.FC<Props> = ({
   name,
   type = 'text',
   register,
+  value,
+  onChange,
   error,
   placeholder,
   right,
@@ -37,13 +41,22 @@ const TextInput: React.FC<Props> = ({
           {label}
         </label>
       )}
-      
-        <input id={name} {...(register ?? {})} type={type} placeholder={placeholder} className={inputClassName} />
-        {right && <div className={rightClassName}>{right}</div>}
-   
+
+      <input
+        id={name}
+        type={type}
+        placeholder={placeholder}
+        className={inputClassName}
+        {...register}
+        value={value}
+        onChange={onChange}
+      />
+
+      {right && <div className={rightClassName}>{right}</div>}
       {error && <p className={errorClassName}>{error}</p>}
     </div>
   );
 };
+
 
 export default TextInput;
