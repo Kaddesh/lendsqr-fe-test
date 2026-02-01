@@ -6,16 +6,18 @@ import "./table.scss";
 import FilterModal from "../Modal/filterModal";
 import UserActionModal from "../Modal/userActionModal";
 import { useNavigate } from "react-router-dom";
+import tableHeaders from "../../constants/tableConfig";
 
 interface TableProps {
   users: User[];
-  onUserClick?: (userId: string) => void;
 }
 
 const Table: React.FC<TableProps> = ({ users }) => {
   const [openMenuId, setOpenMenuId] = useState<string | null>(null);
-  const [showFilterModal, setShowFilterModal] = useState<boolean>(false);
-  const menuRefs = useRef<{ [key: string]: HTMLDivElement | null }>({});
+  const [activeFilterKey, setActiveFilterKey] = useState<string | null>(null);
+
+  const menuRefs = useRef<Record<string, HTMLDivElement | null>>({});
+  const filterRefs = useRef<Record<string, HTMLDivElement | null>>({});
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -27,16 +29,19 @@ const Table: React.FC<TableProps> = ({ users }) => {
       ) {
         setOpenMenuId(null);
       }
+
+      if (
+        activeFilterKey &&
+        filterRefs.current[activeFilterKey] &&
+        !filterRefs.current[activeFilterKey]?.contains(event.target as Node)
+      ) {
+        setActiveFilterKey(null);
+      }
     };
 
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => document.removeEventListener("mousedown", handleClickOutside);
-  }, [openMenuId]);
-
-  const handleMenuClick = (userId: string, event: React.MouseEvent) => {
-    event.stopPropagation();
-    setOpenMenuId((prev) => (prev === userId ? null : userId));
-  };
+    document.addEventListener("click",  handleClickOutside);
+    return () => document.removeEventListener("click", handleClickOutside);
+  }, [openMenuId, activeFilterKey]);
 
   const handleViewUser = (userId: string) => {
     setOpenMenuId(null);
@@ -60,81 +65,45 @@ const Table: React.FC<TableProps> = ({ users }) => {
 
   return (
     <div className="table-wrapper">
-      <table className="users-table">
+      {/* ================= DESKTOP / TABLET TABLE ================= */}
+      <table className="users-table desktop-table">
         <thead>
           <tr>
-            <th>
-              <div className="table-header">
-                <span>organization</span>
-                <img
-                  src={filterIcon}
-                  alt="sort"
-                  className="header-icon"
-                  onClick={() => setShowFilterModal(true)}
-                />
-              </div>
-            </th>
-            <th>
-              <div className="table-header">
-                <span>user</span>
-                <img
-                  src={filterIcon}
-                  alt="sort"
-                  className="header-icon"
-                  onClick={() => setShowFilterModal(true)}
-                />
-              </div>
-            </th>
-            <th>
-              <div className="table-header">
-                <span>email</span>
-                <img
-                  src={filterIcon}
-                  alt="sort"
-                  className="header-icon"
-                  onClick={() => setShowFilterModal(true)}
-                />
-              </div>
-            </th>
-            <th>
-              <div className="table-header">
-                <span>phone number</span>
-                <img
-                  src={filterIcon}
-                  alt="sort"
-                  className="header-icon"
-                  onClick={() => setShowFilterModal(true)}
-                />
-              </div>
-            </th>
-            <th>
-              <div className="table-header">
-                <span>date joined</span>
-                <img
-                  src={filterIcon}
-                  alt="sort"
-                  className="header-icon"
-                  onClick={() => setShowFilterModal(true)}
-                />
-              </div>
-            </th>
-            <th>
-              <div className="table-header">
-                <span>status</span>
-                <img
-                  src={filterIcon}
-                  alt="sort"
-                  className="header-icon"
-                  onClick={() => setShowFilterModal(true)}
-                />
-              </div>
-            </th>
-            <th></th>
+            {tableHeaders.map(({ label, key, filterable }) => (
+              <th key={key}>
+                <div
+                  className="filter-container"
+                  ref={(el) => (filterRefs.current[key] = el)}
+                >
+                  <div className="table-header">
+                    <span>{label}</span>
+                    {filterable && (
+                      <img
+                        src={filterIcon}
+                        alt="filter"
+                        className="header-icon"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          setActiveFilterKey(activeFilterKey === key ? null : key);
+                        }}
+                      />
+                    )}
+                  </div>
+
+                  {activeFilterKey === key && (
+                    <FilterModal onClose={() => setActiveFilterKey(null)} />
+                  )}
+                </div>
+              </th>
+            ))}
+            <th />
           </tr>
         </thead>
+
         <tbody>
           {users.map((user) => {
             const statusColors = getStatusColor(user.status);
+
             return (
               <tr key={user.id}>
                 <td>{user.company}</td>
@@ -160,7 +129,10 @@ const Table: React.FC<TableProps> = ({ users }) => {
                   >
                     <button
                       className="menu-button"
-                      onClick={(e) => handleMenuClick(user.id, e)}
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        setOpenMenuId(openMenuId === user.id ? null : user.id);
+                      }}
                     >
                       <img src={moreVerticalIcon} alt="more options" />
                     </button>
@@ -177,20 +149,69 @@ const Table: React.FC<TableProps> = ({ users }) => {
             );
           })}
         </tbody>
-        {showFilterModal && (
-          <FilterModal
-            onClose={() => setShowFilterModal(false)}
-            onReset={() => {
-              // reset filter logic here
-              setShowFilterModal(false);
-            }}
-            onFilter={() => {
-              // apply filter logic here
-              setShowFilterModal(false);
-            }}
-          />
-        )}
       </table>
+
+      {/*  MOBILE CARDS  */}
+      <div className="mobile-cards">
+        {users.map((user) => {
+          const statusColors = getStatusColor(user.status);
+
+          return (
+            <div className="user-card" key={user.id}>
+              <div className="user-card__header">
+                <div>
+                  <h4>{`${user.firstName} ${user.lastName}`}</h4>
+                  <p>{user.email}</p>
+                </div>
+
+                <div
+                  className="user-card__wrapper"
+                  ref={(el) => (menuRefs.current[user.id] = el)}
+                >
+                  <button
+                    className="user-card__button"
+                    onClick={() =>
+                      setOpenMenuId(openMenuId === user.id ? null : user.id)
+                    }
+                  >
+                    <img src={moreVerticalIcon} alt="more options" />
+                  </button>
+
+                  {openMenuId === user.id && (
+                    <UserActionModal
+                      onView={() => handleViewUser(user.id)}
+                      onClose={() => setOpenMenuId(null)}
+                    />
+                  )}
+                </div>
+              </div>
+
+              <div className="user-card__row">
+                <span>Organization:</span>
+                <span>{user.company}</span>
+              </div>
+
+              <div className="user-card__row">
+                <span>Phone:</span>
+                <span>{user.phone}</span>
+              </div>
+
+              <div className="user-card__row">
+                <span>Status:</span>
+                <span
+                  className="status-badge"
+                  style={{
+                    backgroundColor: statusColors.bg,
+                    color: statusColors.text,
+                  }}
+                >
+                  {user.status}
+                </span>
+              </div>
+            </div>
+          );
+        })}
+      </div>
     </div>
   );
 };
