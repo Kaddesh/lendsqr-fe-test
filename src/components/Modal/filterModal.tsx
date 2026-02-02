@@ -1,6 +1,6 @@
 import TextInput from '../Form/TextInput'
 import { FiChevronDown, FiCalendar } from 'react-icons/fi';
-import './FilterModal.scss';
+import '../Modal/filterModal.scss';
 import { useForm } from 'react-hook-form';
 import { UserFilters } from '../../types';
 import { AppDispatch } from '../../redux/store';

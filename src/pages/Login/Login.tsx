@@ -1,6 +1,6 @@
 import loginImg from '../../assets/images/loginimg.png'
 import lendLogo from '../../assets/icons/lend-Logo.svg'
-import './Login.scss';
+import '../Login/Login.scss';
 import LoginForm from '../../components/Auth/LoginForm'
 
 export const LoginPage = () => {

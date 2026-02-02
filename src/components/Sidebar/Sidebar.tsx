@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { sidebarConfig } from '../../constants/sidebarConfig';
 import briefcase from '../../assets/icons/briefcase.svg'
 import { FiX } from 'react-icons/fi';
-import './Sidebar.scss';
+import '../Sidebar/Sidebar.scss';
 import SidebarItem from './SidebarItem';
 
 interface SidebarProps {

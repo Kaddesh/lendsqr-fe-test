@@ -1,6 +1,6 @@
 import { FiEye } from 'react-icons/fi';
 import { HiOutlineUser, HiOutlineUserRemove } from 'react-icons/hi';
-import './UserActionModal.scss';
+import '../Modal/userActionModal.scss';
 
 type Props = {
   onClose?: () => void;

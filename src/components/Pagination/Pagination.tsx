@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from 'react'
 import dropdownIcon from '../../assets/icons/dropdown.svg'
-import './Pagination.scss'
+import '../Pagination/Pagination.scss'
 
 interface PaginationProps {
   currentPage: number

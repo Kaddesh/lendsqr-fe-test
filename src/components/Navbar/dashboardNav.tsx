@@ -5,7 +5,7 @@ import notificationIcon from '../../assets/icons/notification.svg';
 import dropdownIcon from '../../assets/icons/dropdown.svg';
 import searchIcon from '../../assets/icons/search.svg';
 import profileImg from '../../assets/images/profileimg.png';
-import './dashboardNav.scss';
+import '../Navbar/dashboardNav.scss';
 import { AppDispatch, RootState } from '../../redux/store';
 import { useDispatch, useSelector } from 'react-redux';
 import { setSearchTerm } from '../../redux/slices/usersSlice';

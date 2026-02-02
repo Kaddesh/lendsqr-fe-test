@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import './DetailsPage.scss';
+import '../userDetail/DetailsPage.scss';
 import { useParams, useNavigate } from 'react-router-dom';
 import UserCard from '../../components/card/userCard';
 import UserDetails from '../../components/card/UserDetails/UserDetails';

@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import "./Dashboard.scss";
+import "../Dashboard/Dashboard.scss";
 import DashboardCard from "../../components/card/dashboardCard";
 import usersIcon from "../../assets/icons/user.svg";
 import activeUserIcon from "../../assets/icons/active-user.svg";
