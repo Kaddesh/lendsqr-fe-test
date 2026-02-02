@@ -10,7 +10,8 @@
   height: calc(100vh - 100px); 
   overflow-y: auto;
   padding-top: 19px;
-  padding-left: 30px;
+  
+
   display: flex;
   flex-direction: column;
   transform: translateX(0);
@@ -40,23 +41,27 @@
 .sidebar-content {
   display: flex;
   flex-direction: column;
-  margin-top: 40px;
 
    @include breakpoint-up(large) {
    margin-top: 0;
   }
 }
 
-/* ================= TOP SECTION ================= */
+/* TOP SECTION  */
 
 .sidebar-top-section {
   display: flex;
   flex-direction: column;
+  margin-bottom: 40px;
 }
 
 /* Switch Organization */
 .org-switcher-wrapper {
   position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 52px;
+  margin-left: 30px;
 }
 
 .org-switcher {
@@ -89,7 +94,7 @@
   margin-top: 41px;
 }
 
-/* ================= SECTIONS ================= */
+/* SECTIONS */
 
 .sidebar-section {
   margin-bottom: 41px;
@@ -100,6 +105,7 @@
   font-weight: 500;
   color: #545f7d;
   margin-bottom: 31px;
+  margin-left: 30px;
 }
 
 /* Items stack */
@@ -109,20 +115,39 @@
   gap: 31px;
 }
 
-/* ================= SIDEBAR ITEM ================= */
+/* SIDEBAR ITEM  */
 
 .sidebar-item {
-  display: flex;
-  align-items: center;
-  gap: 10px;
+  position: relative;
+  width: 100%;
   background: transparent;
   border: none;
   padding: 0;
   cursor: pointer;
-  color: #213f7d;
-  font-size: 14px;
-  text-align: left;
 }
+
+.sidebar-item-content {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 0px 30px; // ✅ spacing preserved
+  width: 100%;
+}
+
+.sidebar-item.active::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: #39cdcc;
+  border-radius: 8px;
+  z-index: 0;
+}
+
+.sidebar-item-content {
+  position: relative;
+  z-index: 1;
+}
+
 
 /* ICON */
 .sidebar-item-icon {

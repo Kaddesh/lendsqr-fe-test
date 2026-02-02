@@ -58,7 +58,7 @@ export interface UserProfile {
 
 export interface AuthState {
   isAuthenticated: boolean;
-  user: { email: string; name: string } | null;
+  user: User | null;
   loading: boolean;
   error: string | null;
 }
@@ -70,6 +70,8 @@ export interface UsersState {
   currentPage: number;
   pageSize: number;
   total: number;
+  filters: UserFilters;
+  searchTerm: string;
 }
 
 export interface UserDetailsState {
@@ -77,3 +79,13 @@ export interface UserDetailsState {
   loading: boolean;
   error: string | null;
 }
+
+export type UserFilters = {
+  organization?: string;
+  username?: string;
+  email?: string;
+  phone?: string;
+  status?: UserStatus;
+  date?: string;
+  search?: string;
+};

@@ -1,7 +1,7 @@
 import { SidebarConfig } from "../types/sidebar";
 import homeIcon from '../assets/icons/home.svg';
 import briefcaseIcon from '../assets/icons/briefcase.svg';
-import userLoanIcon from '../assets/icons/userW-loan.svg';
+
 import sackIcon from '../assets/icons/sack.svg';
 import handshakeIcon from '../assets/icons/handshake.svg';
 import piggyBankIcon from '../assets/icons/piggy-bank.svg';
@@ -18,6 +18,8 @@ import chartsIcon from '../assets/icons/charts.svg';
 import preferencesIcon from '../assets/icons/preferences.svg';
 import feesPricingIcon from '../assets/icons/fees-pricingg.svg';
 import auditIcon from '../assets/icons/audit.svg';
+import user1 from '../assets/icons/users 1.svg'
+import userfriends from '../assets/icons/user-friends 1.svg'
 
 
 
@@ -42,13 +44,13 @@ export const sidebarConfig: SidebarConfig = {
           id: 'users',
           label: 'Users',
           path: '/users',
-          icon: briefcaseIcon,
+          icon: userfriends,
         },
         {
           id: 'guarantors',
           label: 'Guarantors',
           path: '/guarantors',
-          icon: userLoanIcon,
+          icon: user1,
         },
         {
           id: 'loans',
@@ -73,7 +75,6 @@ export const sidebarConfig: SidebarConfig = {
           label: 'Loan Requests',
           path: '/loan-requests',
           icon: loanRequestIcon,
-          badge: 12,
         },
         {
           id: 'whitelist',
