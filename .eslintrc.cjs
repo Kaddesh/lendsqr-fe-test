@@ -17,10 +17,13 @@ module.exports = {
     '@typescript-eslint/no-explicit-any': 'error',
     '@typescript-eslint/explicit-module-boundary-types': 'off',
     'react/prop-types': 'off',
+
+    // ✅ REQUIRED for React 17+ JSX transform
+    'react/react-in-jsx-scope': 'off',
   },
   settings: {
     react: {
       version: 'detect',
     },
   },
-}
+};
