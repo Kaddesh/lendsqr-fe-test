@@ -21,6 +21,7 @@ const SidebarItem: React.FC<SidebarItemProps> = ({
   const isActive = path && location.pathname === path;
 
   return (
+    
     <button
       className={`sidebar-item ${isActive ? 'active' : ''}`}
       onClick={() => path && navigate(path)}

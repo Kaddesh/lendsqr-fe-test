@@ -11,7 +11,7 @@
     flex-direction: column;
     gap: 30px;
 
-     @include breakpoint-up(large) {
+     @include breakpoint-up(medium) {
       flex-direction: row;
       flex-wrap: wrap;
       align-items: center;

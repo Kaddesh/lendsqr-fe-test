@@ -1,9 +1,9 @@
-import { useState } from 'react';
 import { sidebarConfig } from '../../constants/sidebarConfig';
 import briefcase from '../../assets/icons/briefcase.svg'
 import { FiX } from 'react-icons/fi';
 import '../Sidebar/Sidebar.scss';
 import SidebarItem from './SidebarItem';
+import dropdownarrow from '../../assets/icons/downarrow.svg';
 
 interface SidebarProps {
   isOpen?: boolean;
@@ -11,16 +11,6 @@ interface SidebarProps {
 }
 
 const Sidebar: React.FC<SidebarProps> = ({ isOpen = true, onClose }) => {
-  const [showOrgDropdown, setShowOrgDropdown] = useState(false);
-  const [selectedOrganization, setSelectedOrganization] =
-    useState('Select Organization');
-
-  const organizations = [
-    'Acme Corporation',
-    'Tech Ventures',
-    'Global Industries',
-    'Innovation Labs',
-  ];
 
   return (
     <aside className={`sidebar ${isOpen ? 'open' : 'closed'}`}>
@@ -29,29 +19,14 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen = true, onClose }) => {
         <div className="org-switcher-wrapper">
           <button
             className="sidebar-item org-switcher"
-            onClick={() => setShowOrgDropdown((p) => !p)}
           >
-            <img src={briefcase} className="sidebar-item-icon" />
-            <span className="sidebar-item-label">{selectedOrganization}</span>
-            <span className="org-switcher-arrow">▼</span>
-          </button>
-
-          {showOrgDropdown && (
-            <div className="org-dropdown">
-              {organizations.map((org) => (
-                <button
-                  key={org}
-                  className="org-dropdown-item"
-                  onClick={() => {
-                    setSelectedOrganization(org);
-                    setShowOrgDropdown(false);
-                  }}
-                >
-                  {org}
-                </button>
-              ))}
+            <div className='org-wrap'>
+              <img src={briefcase} className="sidebar-item-icon" />
+              <span className="sidebar-item-label">Switch Organization</span>
             </div>
-          )}
+
+            <img src={dropdownarrow} className="org-switcher-arrow"/>
+          </button>
         </div>
 
         {sidebarConfig.topSection.map((item) => (
@@ -76,7 +51,7 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen = true, onClose }) => {
 
       {onClose && (
         <button className="sidebar-close-btn" onClick={onClose}>
-          <FiX size={30} />
+          <FiX size={20} />
         </button>
       )}
     </aside>

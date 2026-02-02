@@ -21,8 +21,7 @@
   overflow-y: auto;
 
   @include breakpoint-up(medium) {
-    padding: 0 40px;
-   
+    padding: 40px 40px;
   }
 
   @include breakpoint-up(large) {

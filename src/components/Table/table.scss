@@ -186,6 +186,14 @@
     align-items: flex-start;
     margin-bottom: 12px;
 
+&__wrapper {
+  
+  button {
+border: 4px;
+  outline: none;
+  }
+}
+
     h4 {
       margin: 0;
       font-size:20px;
