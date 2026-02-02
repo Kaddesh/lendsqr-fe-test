@@ -43,7 +43,7 @@ const DetailsPage: React.FC = () => {
     <div className="detailpage-container">
       <div className='detailpage-content'>
       {/* Back */}
-      <div className="back-row" onClick={() => navigate('/dashboard')}>
+      <div className="back-row" onClick={() => navigate('/users')}>
         <img src={ArrowLeft} alt="arrow-left" className='back-row__arrow' />
         <span>Back to Users</span>
       </div>
