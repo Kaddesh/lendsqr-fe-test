@@ -1,5 +1,5 @@
 import React from 'react'
-import '../UserDetails/userDetails.scss';
+import '../UserDetails/UserDetails.scss'
 import { UserProfile } from '../../../types';
 
 interface UserDetailsProps {
