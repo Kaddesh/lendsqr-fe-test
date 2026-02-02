@@ -1,4 +1,3 @@
-import React from 'react'
 import loginImg from '../../assets/images/loginimg.png'
 import lendLogo from '../../assets/icons/lend-Logo.svg'
 import './Login.scss';

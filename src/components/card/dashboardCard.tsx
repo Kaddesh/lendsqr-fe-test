@@ -1,4 +1,3 @@
-import React from 'react'
 import './dashboardCard.scss'
 
 type DashboardCardProps = {

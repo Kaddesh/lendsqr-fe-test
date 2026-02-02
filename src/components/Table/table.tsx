@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect } from "react";
 import { User } from "../../types";
 import filterIcon from "../../assets/icons/filter-button.svg";
 import moreVerticalIcon from "../../assets/icons/more-vertical.svg";

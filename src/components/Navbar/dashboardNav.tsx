@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import TextInput from '../Form/TextInput';
 import lendLogo from '../../assets/icons/lend-Logo.svg';
 import notificationIcon from '../../assets/icons/notification.svg';

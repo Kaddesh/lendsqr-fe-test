@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import "./Dashboard.scss";
 import DashboardCard from "../../components/card/dashboardCard";
 import usersIcon from "../../assets/icons/user.svg";

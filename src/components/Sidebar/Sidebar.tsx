@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { sidebarConfig } from '../../constants/sidebarConfig';
 import briefcase from '../../assets/icons/briefcase.svg'
 import { FiX } from 'react-icons/fi';

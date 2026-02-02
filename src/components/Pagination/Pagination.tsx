@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react'
+import { useState, useRef, useEffect } from 'react'
 import dropdownIcon from '../../assets/icons/dropdown.svg'
 import './Pagination.scss'
 

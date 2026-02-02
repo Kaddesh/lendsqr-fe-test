@@ -1,4 +1,3 @@
-import React from 'react';
 import TextInput from '../Form/TextInput'
 import { FiChevronDown, FiCalendar } from 'react-icons/fi';
 import './FilterModal.scss';
